@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="icon" href="icon/favicon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Type Master</title>
+</head>
+
+<body>
+    <audio id="clockSound1">
+        <source src="Sounds/clock1.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="clockSound2">
+        <source src="Sounds/clock2.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="gameOverSound">
+        <source src="Sounds/game_over.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="timer" id="timer">Play Typing Master</div>
+    <div class="container box-shadow">
+        <div class="quote-display" id="quoteDisplay">Quote to type</div>
+        <div class="typed">
+            <textarea id="quoteInput" class="quote-input" placeholder="Click play to begin"></textarea>
+        </div>
+        <div class="control-div">
+            <div class="controls float-left">
+                <span class="fa-stack fa-2x" id="startGameBtn">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fas fa-play fa-stack-1x"></i>
+                </span>
+                <span class="fa-stack fa-2x d-none" id="stopGameBtn">
+                    <i class="fa fa-circle fa-stack-2x icon-background2"></i>
+                    <i class="fas fa-stop fa-stack-1x"></i>
+                </span>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h3>Score:
+                        <span id="score">0</span>
+                    </h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>Your Best:
+                        <span id="bestScore">0</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card card-body bg-primary text-white">
+                    <h5>Choose Game Level</h5>
+                    <br>
+                    <select id="chooseLevel" class="form-control col-md-4 offset-md-4">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Instructions Button -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#instructionsModal">
+                    Tips & Tricks
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#yourScoresModal">
+                    Your Scores
+                </button>
+            </div>
+        </div>
+        <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title text-dark" id="exampleModalLabel">Tips & Tricks</h3>
+                    </div>
+                    <div class="modal-body text-dark">
+                        <p style="font-size: 1.5em;">1. Do not rush when you just started learning. Speed up only when your fingers hit the right keys out of habit.
+                            <br>2. Take your time when typing to avoid mistakes. The speed will pick up as you progress</div>
+                    <img src="./keyboard-finger.jpg">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Score Modal -->
+        <div class="modal fade" id="bestScoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title text-dark" id="exampleModalLabel">New Best Score</h3>
+                    </div>
+                    <div class="modal-body text-dark text-center" id="bestScoreModalBody">
+                        <p>Congratulations you made your best score!</p>
+                        <em id="bestscoreEm"></em>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="yourScoresModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title text-dark" id="exampleModalLabel">Your Scores</h3>
+                    </div>
+                    <div class="modal-body text-dark">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <th>Game & Level</th>
+                                <th>Score</th>
+                            </thead>
+                            <tbody id="yourScoresTbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <script src="scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').bind('cut copy paste', function(e) {
+                e.preventDefault();
+            })
+            $("body").on("contextmenu", function(e) {
+                return false;
+            })
+        })
+    </script>
+
+</body>
+
+</html>
