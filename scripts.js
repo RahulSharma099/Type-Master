@@ -2,7 +2,6 @@
 
 var correct = true
 var isPlaying = false
-var time = -1
 var timeVar = 0.9
 var timeVarB = 0.9 //timeVar ke liye buffer
 var score = 0
@@ -11,6 +10,7 @@ var gamesCounter = 0
 
 
 // DOM Sectiion initialization
+const timer = document.getElementById('timer')
 const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random'
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
